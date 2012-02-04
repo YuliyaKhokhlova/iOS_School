@@ -10,6 +10,7 @@
 #import "ArkanoidBoard.h"
 #import "ArkanoidBall.h"
 #import "ArkanoidBrick.h"
+#import "ArkanoidBonus.h"
 
 static NSUInteger const DefaultStartLevel = 1;
 static NSUInteger const DefaultStartScores = 0;
@@ -26,6 +27,7 @@ static NSUInteger const DefaultStartLives = 3;
     ArkanoidBoard * _board;
     NSMutableArray * _ball;
     NSMutableArray * _brick;
+    NSMutableArray * _bonus;
     
     NSMutableDictionary * brickImages;
 }
@@ -38,6 +40,7 @@ static NSUInteger const DefaultStartLives = 3;
 @property (retain, nonatomic) ArkanoidBoard * board;
 @property (retain, nonatomic) NSMutableArray * ball;
 @property (retain, nonatomic) NSMutableArray * brick;
+@property (retain, nonatomic) NSMutableArray * bonus;
 
 + (GameState *)instance;
 + (void)releaseInstance;

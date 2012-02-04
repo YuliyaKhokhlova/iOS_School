@@ -22,6 +22,7 @@ static GameState * _instance = nil;
 @synthesize board = _board;
 @synthesize ball = _ball;
 @synthesize brick = _brick;
+@synthesize bonus = _bonus;
 
 - (id)initNewGameFromLevel:(NSUInteger)startLevel 
 {

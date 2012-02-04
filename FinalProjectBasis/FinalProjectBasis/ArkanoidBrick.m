@@ -23,19 +23,10 @@ static NSString * const DefaultBrickImageFile = @"brick_grey_black.png";
     if (self) 
     {
         (lives < 1) ? (self.lives = 1) : (self.lives = lives);
+        imageIndex = 0;
         self.bonus = bonus;
         self.images = images;
-        
-        NSUInteger count = images.count;
-        if (nil != images && count > 0)
-        {
-            self.image = [images objectAtIndex:(count - 1)];
-        }
-        else
-        {
-            UIImage * image = [UIImage imageNamed:DefaultBrickImageFile];
-            self.image = image;
-        }
+        self.image = [self.images objectAtIndex:imageIndex];
     }
     return self;
 }
@@ -49,6 +40,20 @@ static NSString * const DefaultBrickImageFile = @"brick_grey_black.png";
     [_bonus release], _bonus = nil;
     [_images release], _images = nil;
     [super dealloc];
+}
+
+- (void)changeImage
+{
+    imageIndex++;
+    
+    if (imageIndex <= self.images.count) 
+    {
+        self.image = [self.images objectAtIndex:imageIndex];
+    }
+    else
+    {
+        self.image = [self.images objectAtIndex:(self.images.count - 1)];
+    }
 }
 
 /*

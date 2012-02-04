@@ -11,12 +11,15 @@
 
 static float const DefaultBrickWidth = 30;
 static float const DefaultBrickHeight = 15;
+static float const BrickHitScore = 10;
 
 @interface ArkanoidBrick : UIImageView
 {
     NSUInteger _lives;
     IBonus * _bonus;
     NSArray * _images;
+    
+    NSUInteger imageIndex;
 }
 
 @property (nonatomic) NSUInteger lives;
@@ -24,5 +27,5 @@ static float const DefaultBrickHeight = 15;
 @property (retain, nonatomic) NSArray * images;
 
 - (id)initWithFrame:(CGRect)frame lives:(NSUInteger)lives images:(NSArray *)images bonus:(IBonus *)bonus;
-
+- (void)changeImage;
 @end

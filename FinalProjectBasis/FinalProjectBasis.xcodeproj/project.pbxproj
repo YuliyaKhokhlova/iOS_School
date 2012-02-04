@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3307E25214DD67AF00682567 /* ArkanoidBonus.m in Sources */ = {isa = PBXBuildFile; fileRef = 3307E25114DD67AF00682567 /* ArkanoidBonus.m */; };
 		338784E714D5C2880055F31C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338784E614D5C2880055F31C /* UIKit.framework */; };
 		338784E914D5C2880055F31C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338784E814D5C2880055F31C /* Foundation.framework */; };
 		338784EB14D5C2880055F31C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338784EA14D5C2880055F31C /* CoreGraphics.framework */; };
@@ -55,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3307E25014DD67AF00682567 /* ArkanoidBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArkanoidBonus.h; sourceTree = "<group>"; };
+		3307E25114DD67AF00682567 /* ArkanoidBonus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArkanoidBonus.m; sourceTree = "<group>"; };
 		338784E214D5C2880055F31C /* FinalProjectBasis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProjectBasis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338784E614D5C2880055F31C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		338784E814D5C2880055F31C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -216,6 +219,8 @@
 				958648E114D95B0600F6C12D /* ArkanoidBrick.m */,
 				95819B6414DABDD50035C590 /* PauseButton.h */,
 				95819B6514DABDD50035C590 /* PauseButton.m */,
+				3307E25014DD67AF00682567 /* ArkanoidBonus.h */,
+				3307E25114DD67AF00682567 /* ArkanoidBonus.m */,
 			);
 			name = "Game View";
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				958648E214D95B0600F6C12D /* ArkanoidBrick.m in Sources */,
 				95819B5B14DA75EB0035C590 /* BrickDescription.m in Sources */,
 				95819B6614DABDD50035C590 /* PauseButton.m in Sources */,
+				3307E25214DD67AF00682567 /* ArkanoidBonus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +391,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -399,7 +406,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -409,6 +417,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -416,8 +425,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

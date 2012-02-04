@@ -10,7 +10,7 @@
 
 #import "PlayViewController.h"
 
-static float const TimerInterval = 0.05;
+static float const TimerInterval = 0.01;
 
 @implementation PlayViewController
 @synthesize pauseButton;
@@ -107,52 +107,10 @@ static float const TimerInterval = 0.05;
     [alert release];
 }
 
-- (void)collisionDetectionInPositions:(NSArray *)newCenters withBricks:(NSArray *)bricksToKill
+- (void)collisionDetectionInPositions:(NSMutableArray *)newCenters bricksToKill:(NSMutableArray *)bricksToHit
 {
-}
-
-- (void)moveBallsToCenters:(NSArray *)newCenters
-{
-    [UIView animateWithDuration:TimerInterval delay:0 options:UIViewAnimationCurveLinear animations:^(void)
-     {
-         for (int i = 0; i < [GameState instance].ball.count; i++)
-         {
-             NSValue * value = [newCenters objectAtIndex:i];
-             CGPoint center = [value CGPointValue];
-             ArkanoidBall * ball = [[GameState instance].ball objectAtIndex:i];
-             ball.center = center;
-         }
-     }
-                     completion:^(BOOL finished)
-     {
-     }];
-}
-
-- (void)destroyingBricks:(NSArray *)bricksToKill
-{
-    for (ArkanoidBrick * brick in bricksToKill)
-    {
-        CGRect rect = brick.frame;
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseIn animations:^(void)
-         {
-             brick.frame = CGRectMake(rect.origin.x - 3, rect.origin.y - 3, rect.size.width + 6, rect.size.height + 6);
-             brick.alpha = 0;
-         }
-                         completion:^(BOOL finished)
-         {
-             [brick setHidden:YES];
-         }];
-        [[GameState instance].brick removeObject:brick];
-    }
-}
-
-- (void)gameStep
-{
-    NSMutableArray * newCenter = [NSMutableArray arrayWithCapacity:[GameState instance].ball.count];
-    NSMutableArray * bricksToKill = [NSMutableArray array];
     float delta = 13;
     
-    //Collision Detection
     for (ArkanoidBall * ball in [GameState instance].ball)
     {
         CGPoint newPoint = CGPointMake(ball.center.x + ball.velocity.x, ball.center.y + ball.velocity.y);
@@ -179,8 +137,8 @@ static float const TimerInterval = 0.05;
             [timer invalidate];
         }
         
-        [newCenter addObject:[NSValue valueWithCGPoint:newPoint]];
-
+        [newCenters addObject:[NSValue valueWithCGPoint:newPoint]];
+        
         //Board collision detection
         CGRect newRect = CGRectMake(ball.frame.origin.x + ball.velocity.x, ball.frame.origin.y + ball.velocity.y, ball.frame.size.width, ball.frame.size.height);
         
@@ -188,13 +146,13 @@ static float const TimerInterval = 0.05;
         {
             ball.velocity = CGPointMake(ball.velocity.x, -ball.velocity.y);
         }
-
+        
         //Bricks collision detection
         for (ArkanoidBrick * brick in [GameState instance].brick) 
         {
             float deltaCenterX = abs(brick.center.x - ball.center.x);
             float deltaCenterY = abs(brick.center.y - ball.center.y);
-                
+            
             if (deltaCenterX > (brick.frame.size.width + ball.frame.size.width) / 2 ||
                 deltaCenterY > (brick.frame.size.height + ball.frame.size.height) / 2 )
                 continue;
@@ -207,17 +165,110 @@ static float const TimerInterval = 0.05;
             {
                 ball.velocity = CGPointMake(-ball.velocity.x, ball.velocity.y);
             }
-            
-            [bricksToKill addObject:brick];
+            [bricksToHit addObject:brick];
         }
     }
     
+}
+
+- (void)moveBallsToCenters:(NSArray *)newCenters
+{
+    [UIView animateWithDuration:TimerInterval delay:0 options:UIViewAnimationCurveLinear animations:^(void)
+     {
+         for (int i = 0; i < [GameState instance].ball.count; i++)
+         {
+             NSValue * value = [newCenters objectAtIndex:i];
+             CGPoint center = [value CGPointValue];
+             ArkanoidBall * ball = [[GameState instance].ball objectAtIndex:i];
+             ball.center = center;
+         }
+     }
+                     completion:^(BOOL finished)
+     {
+     }];
+}
+
+- (void)destroyingBricks:(NSArray *)bricksToHit
+{
+    if (0 == bricksToHit.count)
+    {
+        return;
+    }
+    
+    for (ArkanoidBrick * brick in bricksToHit)
+    {
+        CGRect rect = brick.frame;
+        brick.lives = brick.lives - 1;
+
+        if (brick.lives >= 1) 
+        {
+            [brick changeImage];
+        }
+        else
+        {
+            [UIView animateWithDuration:(TimerInterval / 2) delay:0 options:UIViewAnimationCurveEaseIn animations:^(void)
+             {
+                 brick.frame = CGRectMake(rect.origin.x - 3, rect.origin.y - 3, rect.size.width + 6, rect.size.height + 6);
+                 brick.alpha = 0;
+             }
+                             completion:^(BOOL finished)
+             {
+             }];
+            [[GameState instance].brick removeObject:brick];
+        }
+    }
+}
+
+- (void)updateScoreView
+{
+    
+}
+
+- (void)moveBonus
+{
+    NSMutableArray * bonusCatched = [NSMutableArray array];
+    
+    for (ArkanoidBonus * bonus in [GameState instance].bonus)
+    {
+        if ( CGRectIntersectsRect(bonus.frame, [GameState instance].board.frame) )
+        {
+            //
+            [bonusCatched addObject:bonus];
+        }
+    }
+    
+    for (ArkanoidBonus * bonus in bonusCatched)
+    {
+        [[GameState instance].bonus removeObject:bonus];
+    }
+}
+
+- (void)gameStep
+{
+    NSMutableArray * newCenters = [NSMutableArray arrayWithCapacity:[GameState instance].ball.count];
+    NSMutableArray * bricksToHit = [NSMutableArray array];
+    
+    //Collision Detection
+    [self collisionDetectionInPositions:newCenters bricksToKill:bricksToHit];
+    
     //Balls motion
-    [self moveBallsToCenters:newCenter];
+    [self moveBallsToCenters:newCenters];
     
-    //Bricks destroying
-    [self destroyingBricks:bricksToKill];
+    //Bricks beating and score adding
+    [self destroyingBricks:bricksToHit];
+        
+    //Add score
+    [GameState instance].scores += bricksToHit.count * BrickHitScore;
+    [self updateScoreView];
+        
+    //Check level complition
     
+    
+    //Bonus motion and acting
+    if (0 != [GameState instance].bonus.count)
+    {
+        [self moveBonus];
+    }
 }
 
 - (void)launchGame

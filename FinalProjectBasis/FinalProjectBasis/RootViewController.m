@@ -34,6 +34,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.playVC = nil;
+        self.highScoreVC = nil;
+        self.passwordVC = nil;
     }
     return self;
 }
@@ -112,7 +115,7 @@
     [ball release], ball = nil;
 
     float stx = 13;
-    float sty = 30;
+    float sty = 200;
     
     CGRect rect = CGRectMake(stx, sty, DefaultBrickWidth, DefaultBrickHeight);
     UIImage * image = [UIImage imageNamed:@"brick_cyan_blue.png"];
@@ -151,7 +154,8 @@
 
     rect = CGRectMake(stx + 5 * DefaultBrickWidth, sty + 2 * DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
     image = [UIImage imageNamed:@"brick_pink_purple.png"];
-    images = [NSArray arrayWithObject:image];
+    UIImage * image2 = [UIImage  imageNamed:@"brick_cyan_blue.png"];
+    images = [NSArray arrayWithObjects:image, image2, nil];
     brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 images:images bonus:nil];
     [[GameState instance].brick addObject:brick];
     [brick release], brick = nil;
@@ -159,7 +163,7 @@
     if (!self.playVC)
     {
         self.playVC = [[PlayViewController alloc] initWithNibName:@"PlayViewController" bundle:nil];
-        [self.playVC setTitle:@"Game"];
+        [self.playVC setTitle:@"Level 1"];
     }
     [self.navigationController pushViewController:self.playVC animated:YES];
 }
