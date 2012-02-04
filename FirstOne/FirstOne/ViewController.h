@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyView.h"
 
 @interface ViewController : UIViewController
+
 - (IBAction)buttonTouchUpInside:(id)sender;
+
+@property (retain, nonatomic) IBOutlet MyView *v1;
+@property (retain, nonatomic) IBOutlet MyView *v2;
 
 @end

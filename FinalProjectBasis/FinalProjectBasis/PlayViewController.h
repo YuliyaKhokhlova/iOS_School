@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ArkanoidBoard.h"
+#import "GameState.h"
 
 @interface PlayViewController : UIViewController
+{
+    NSTimer * timer;
+    
+    NSMutableArray * ballViews;
+    NSMutableArray * brickViews;
+}
+
+@property (retain, nonatomic) IBOutlet UIImageView *pauseButton;
+
+- (void)launchGame;
+- (void)pauseGame;
 
 @end

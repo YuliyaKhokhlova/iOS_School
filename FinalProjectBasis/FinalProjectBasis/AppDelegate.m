@@ -19,7 +19,6 @@
 - (void)dealloc
 {
     [_window release], _window = nil;
-    
     [_navigationControler release], _navigationControler = nil;
     [_rootViewCtrl release], _rootViewCtrl = nil;
     
@@ -29,12 +28,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.rootViewCtrl = [[[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil] autorelease];
-    self.rootViewCtrl.title = @"Main Menu";
+    self.rootViewCtrl = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    self.rootViewCtrl.title = @"Arkanoid";
     self.navigationControler = [[UINavigationController alloc] init];
-    
-//    UINavigationBar * navigBar = [self.navigationControler navigationBar];
-//    [navigBar sett];
+    [self.navigationControler setNavigationBarHidden:NO];
     
     [self.navigationControler pushViewController:self.rootViewCtrl animated:NO];
     [self.window setRootViewController:self.navigationControler];

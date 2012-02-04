@@ -9,6 +9,8 @@
 #import "ViewController.h"
 
 @implementation ViewController
+@synthesize v1;
+@synthesize v2;
 
 - (void)didReceiveMemoryWarning
 {
@@ -26,6 +28,8 @@
 
 - (void)viewDidUnload
 {
+    [self setV1:nil];
+    [self setV2:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -66,5 +70,36 @@
                                            otherButtonTitles: nil];
     [alert show];
     [alert release], alert = nil;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [UIView animateWithDuration:1.0  delay: 0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^
+     {
+         v1.center = CGPointMake(300, 300);
+     }
+                     completion:^(BOOL finished)
+     {
+     }];
+
+    
+    [UIView animateWithDuration:1.0  delay: 0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^
+    {
+        v2.center = CGPointMake(300, 300);
+    }
+                     completion:^(BOOL finished)
+    {
+    }];
+
+    
+}
+- (void)dealloc {
+    [v1 release];
+    [v2 release];
+    [super dealloc];
 }
 @end
