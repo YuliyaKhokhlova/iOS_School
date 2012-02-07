@@ -51,7 +51,13 @@
 		958648DF14D959A500F6C12D /* main frame.gif in Resources */ = {isa = PBXBuildFile; fileRef = 958648DE14D959A500F6C12D /* main frame.gif */; };
 		958648E214D95B0600F6C12D /* ArkanoidBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 958648E114D95B0600F6C12D /* ArkanoidBrick.m */; };
 		958695D914D7A2C20002EFA3 /* ArkanoidBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 958695D814D7A2C20002EFA3 /* ArkanoidBall.m */; };
-		95E2A1FE14D66EFA005970ED /* IBonus.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E2A1FD14D66EFA005970ED /* IBonus.m */; };
+		959CA95E14DFB076007334ED /* bonus_fast.gif in Resources */ = {isa = PBXBuildFile; fileRef = 959CA95714DFB076007334ED /* bonus_fast.gif */; };
+		959CA95F14DFB076007334ED /* bonus_live.gif in Resources */ = {isa = PBXBuildFile; fileRef = 959CA95814DFB076007334ED /* bonus_live.gif */; };
+		959CA96014DFB076007334ED /* bonus_multi.gif in Resources */ = {isa = PBXBuildFile; fileRef = 959CA95914DFB076007334ED /* bonus_multi.gif */; };
+		959CA96114DFB076007334ED /* bonus_narrow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 959CA95A14DFB076007334ED /* bonus_narrow.gif */; };
+		959CA96214DFB076007334ED /* bonus_slow.gif in Resources */ = {isa = PBXBuildFile; fileRef = 959CA95B14DFB076007334ED /* bonus_slow.gif */; };
+		959CA96314DFB076007334ED /* bonus_victory.gif in Resources */ = {isa = PBXBuildFile; fileRef = 959CA95C14DFB076007334ED /* bonus_victory.gif */; };
+		959CA96414DFB076007334ED /* bonus_wide.gif in Resources */ = {isa = PBXBuildFile; fileRef = 959CA95D14DFB076007334ED /* bonus_wide.gif */; };
 		95E2A21014D6B343005970ED /* ArkanoidBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E2A20F14D6B342005970ED /* ArkanoidBoard.m */; };
 /* End PBXBuildFile section */
 
@@ -114,8 +120,13 @@
 		958648E114D95B0600F6C12D /* ArkanoidBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArkanoidBrick.m; sourceTree = "<group>"; };
 		958695D714D7A2C20002EFA3 /* ArkanoidBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArkanoidBall.h; sourceTree = "<group>"; };
 		958695D814D7A2C20002EFA3 /* ArkanoidBall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArkanoidBall.m; sourceTree = "<group>"; };
-		95E2A1FC14D66EFA005970ED /* IBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBonus.h; sourceTree = "<group>"; };
-		95E2A1FD14D66EFA005970ED /* IBonus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBonus.m; sourceTree = "<group>"; };
+		959CA95714DFB076007334ED /* bonus_fast.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bonus_fast.gif; sourceTree = "<group>"; };
+		959CA95814DFB076007334ED /* bonus_live.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bonus_live.gif; sourceTree = "<group>"; };
+		959CA95914DFB076007334ED /* bonus_multi.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bonus_multi.gif; sourceTree = "<group>"; };
+		959CA95A14DFB076007334ED /* bonus_narrow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bonus_narrow.gif; sourceTree = "<group>"; };
+		959CA95B14DFB076007334ED /* bonus_slow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bonus_slow.gif; sourceTree = "<group>"; };
+		959CA95C14DFB076007334ED /* bonus_victory.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bonus_victory.gif; sourceTree = "<group>"; };
+		959CA95D14DFB076007334ED /* bonus_wide.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bonus_wide.gif; sourceTree = "<group>"; };
 		95E2A20E14D6B342005970ED /* ArkanoidBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArkanoidBoard.h; sourceTree = "<group>"; };
 		95E2A20F14D6B342005970ED /* ArkanoidBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArkanoidBoard.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,8 +241,6 @@
 			children = (
 				958648B314D909DF00F6C12D /* GameState.h */,
 				958648B414D909DF00F6C12D /* GameState.m */,
-				95E2A1FC14D66EFA005970ED /* IBonus.h */,
-				95E2A1FD14D66EFA005970ED /* IBonus.m */,
 				95819B5914DA75EB0035C590 /* BrickDescription.h */,
 				95819B5A14DA75EB0035C590 /* BrickDescription.m */,
 			);
@@ -241,6 +250,13 @@
 		95E2A20414D67EC0005970ED /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				959CA95714DFB076007334ED /* bonus_fast.gif */,
+				959CA95814DFB076007334ED /* bonus_live.gif */,
+				959CA95914DFB076007334ED /* bonus_multi.gif */,
+				959CA95A14DFB076007334ED /* bonus_narrow.gif */,
+				959CA95B14DFB076007334ED /* bonus_slow.gif */,
+				959CA95C14DFB076007334ED /* bonus_victory.gif */,
+				959CA95D14DFB076007334ED /* bonus_wide.gif */,
 				95819B5314DA5C540035C590 /* ball.gif */,
 				958648DE14D959A500F6C12D /* main frame.gif */,
 				958648CA14D954B300F6C12D /* brick_green_lightgreen.png */,
@@ -345,6 +361,13 @@
 				958648DF14D959A500F6C12D /* main frame.gif in Resources */,
 				95819B5414DA5C540035C590 /* ball.gif in Resources */,
 				95819B5814DA72D80035C590 /* level.lvl in Resources */,
+				959CA95E14DFB076007334ED /* bonus_fast.gif in Resources */,
+				959CA95F14DFB076007334ED /* bonus_live.gif in Resources */,
+				959CA96014DFB076007334ED /* bonus_multi.gif in Resources */,
+				959CA96114DFB076007334ED /* bonus_narrow.gif in Resources */,
+				959CA96214DFB076007334ED /* bonus_slow.gif in Resources */,
+				959CA96314DFB076007334ED /* bonus_victory.gif in Resources */,
+				959CA96414DFB076007334ED /* bonus_wide.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +384,6 @@
 				3387857C14D5CC370055F31C /* PlayViewController.m in Sources */,
 				3387858614D5CC370055F31C /* HighScoresViewController.m in Sources */,
 				3387859014D5CC370055F31C /* PasswordViewController.m in Sources */,
-				95E2A1FE14D66EFA005970ED /* IBonus.m in Sources */,
 				95E2A21014D6B343005970ED /* ArkanoidBoard.m in Sources */,
 				958695D914D7A2C20002EFA3 /* ArkanoidBall.m in Sources */,
 				958648B514D909DF00F6C12D /* GameState.m in Sources */,

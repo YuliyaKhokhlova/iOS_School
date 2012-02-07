@@ -15,45 +15,27 @@ static NSString * const DefaultBrickImageFile = @"brick_grey_black.png";
 
 @synthesize lives = _lives;
 @synthesize bonus = _bonus;
-@synthesize images = _images;
 
-- (id)initWithFrame:(CGRect)frame lives:(NSUInteger)lives images:(NSArray *)images bonus:(IBonus *)bonus
+- (id)initWithFrame:(CGRect)frame lives:(NSUInteger)lives image:(UIImage *)image bonus:(ArkanoidBonus *)bonus
 {
     self = [super initWithFrame:frame];
     if (self) 
     {
         (lives < 1) ? (self.lives = 1) : (self.lives = lives);
-        imageIndex = 0;
         self.bonus = bonus;
-        self.images = images;
-        self.image = [self.images objectAtIndex:imageIndex];
+        self.image = image;
     }
     return self;
 }
 
 - (id)initWithFrame:(CGRect)frame 
 {
-    return [self initWithFrame:frame lives:DefaultBrickLives images:nil bonus:nil];
+    return [self initWithFrame:frame lives:DefaultBrickLives image:nil bonus:nil];
 }
 
 - (void)dealloc {
     [_bonus release], _bonus = nil;
-    [_images release], _images = nil;
     [super dealloc];
-}
-
-- (void)changeImage
-{
-    imageIndex++;
-    
-    if (imageIndex <= self.images.count) 
-    {
-        self.image = [self.images objectAtIndex:imageIndex];
-    }
-    else
-    {
-        self.image = [self.images objectAtIndex:(self.images.count - 1)];
-    }
 }
 
 /*

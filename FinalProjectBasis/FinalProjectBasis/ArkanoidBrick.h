@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IBonus.h"
+#import "ArkanoidBonus.h"
 
 static float const DefaultBrickWidth = 30;
 static float const DefaultBrickHeight = 15;
@@ -16,16 +16,11 @@ static float const BrickHitScore = 10;
 @interface ArkanoidBrick : UIImageView
 {
     NSUInteger _lives;
-    IBonus * _bonus;
-    NSArray * _images;
-    
-    NSUInteger imageIndex;
+    ArkanoidBonus * _bonus;
 }
 
 @property (nonatomic) NSUInteger lives;
-@property (retain, nonatomic) IBonus * bonus;
-@property (retain, nonatomic) NSArray * images;
+@property (retain, nonatomic) ArkanoidBonus * bonus;
 
-- (id)initWithFrame:(CGRect)frame lives:(NSUInteger)lives images:(NSArray *)images bonus:(IBonus *)bonus;
-- (void)changeImage;
+- (id)initWithFrame:(CGRect)frame lives:(NSUInteger)lives image:(UIImage *)image bonus:(ArkanoidBonus *)bonus;
 @end

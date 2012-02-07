@@ -26,7 +26,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *playButton;
 @property (retain, nonatomic) IBOutlet UIButton *highScoresButton;
 @property (retain, nonatomic) IBOutlet UIButton *passwordButton;
-@property (retain, nonatomic) IBOutlet UIButton *quitButton;
 @property (retain, nonatomic) IBOutlet UIButton *continueButton;
 
 @end

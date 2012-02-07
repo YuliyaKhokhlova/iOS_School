@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GameState.h"
 
 @implementation AppDelegate
 
@@ -25,16 +26,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.rootViewCtrl = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    RootViewController * vc = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    self.rootViewCtrl = vc;
+    [vc release], vc = nil;
     self.rootViewCtrl.title = @"Arkanoid";
-    self.navigationControler = [[UINavigationController alloc] init];
+
+    UINavigationController * nc = [[UINavigationController alloc] init];
+    self.navigationControler = nc;
+    [nc release], nc = nil;
     [self.navigationControler setNavigationBarHidden:NO];
-    
     [self.navigationControler pushViewController:self.rootViewCtrl animated:NO];
+
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     [self.window setRootViewController:self.navigationControler];
     
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -48,10 +55,10 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
+    [GameState releaseInstance];
+    [self.rootViewCtrl.playVC release], self.rootViewCtrl.playVC = nil;
+    [self.rootViewCtrl.highScoreVC release], self.rootViewCtrl.highScoreVC = nil;
+    [self.rootViewCtrl.passwordVC release], self.rootViewCtrl.passwordVC = nil;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

@@ -10,16 +10,16 @@
 
 enum ArkanoidBoardWidth 
 {
-    ArkanoidBoardWidthNormal = 100,
-    ArkanoidBoardWidthWide   = 150,
-    ArkanoidBoardWidthNarrow = 70
+    ArkanoidBoardWidthNormal = 70,
+    ArkanoidBoardWidthWide   = 100,
+    ArkanoidBoardWidthNarrow = 40
 };
 
 static float const DefaultBoardCenterPositionX = 160;
 static float const DefaultBoardCenterPositionY = 400;
 
-static float const DefaultX = 60;
-static float const DefaultY = 385;
+static float const DefaultBoardPositionX = 130;
+static float const DefaultBoardPositionY = 385;
 static float const DefaultWidth = ArkanoidBoardWidthNormal;
 static float const DefaultHeight = 15;
 

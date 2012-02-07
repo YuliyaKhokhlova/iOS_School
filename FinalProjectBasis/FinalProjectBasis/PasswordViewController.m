@@ -7,8 +7,10 @@
 //
 
 #import "PasswordViewController.h"
+#import "GameState.h"
 
 @implementation PasswordViewController
+@synthesize textField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +40,7 @@
 
 - (void)viewDidUnload
 {
+    [self setTextField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -52,6 +55,30 @@
 - (void)dealloc 
 {
 
+    [textField release];
     [super dealloc];
 }
+- (IBAction)moveToLevel:(id)sender 
+{
+    NSString * key = self.textField.text;
+    NSNumber * value = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (nil == value)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Wrong key!" message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+    }
+    else
+    {
+        //[self.navigationController popViewControllerAnimated:YES];
+        [GameState instance].level = [value intValue];
+        [[NSNotificationCenter defaultCenter] postNotificationName:MoveToLevelNotificationName object:nil];
+    }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self resignFirstResponder];
+}
+
 @end

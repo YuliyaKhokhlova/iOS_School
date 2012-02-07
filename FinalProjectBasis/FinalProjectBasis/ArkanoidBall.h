@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 static float const DefaultBallPositionX = 160;
-static float const DefaultBallPositionY = 300;
+static float const DefaultBallPositionY = 378;
 
-static float const DefaultBallVelocityX = 5;
-static float const DefaultBallVelocityY = -5;
+static float const DefaultBallVelocityX = 7;
+static float const DefaultBallVelocityY = -7;
 
 static float const DefaultBallWidth = 15;
 static float const DefaultBallHeight = 15;

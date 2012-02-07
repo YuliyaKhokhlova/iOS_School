@@ -7,20 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ArkanoidBoard.h"
 #import "GameState.h"
 
 @interface PlayViewController : UIViewController
 {
     NSTimer * timer;
+    NSTimer * bonusBoardTimer;
+    NSTimer * bonusBallTimer;
     
-    NSMutableArray * ballViews;
+    ArkanoidBoard * boardView;
+    ArkanoidBall * ballView;
     NSMutableArray * brickViews;
+    NSMutableArray * bonusViews;
 }
 
-@property (retain, nonatomic) IBOutlet UIImageView *pauseButton;
+@property (retain, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (retain, nonatomic) IBOutlet UILabel *livesLabel;
 
 - (void)launchGame;
 - (void)pauseGame;
+
+- (void)bonusActionSlowBall;
+- (void)bonusActionFastBall;
+- (void)bonusActionWideBoard;
+- (void)bonusActionNarrowBoard;
+- (void)bonusActionAdditionalLive;
+- (void)bonusActionNextLevel;
 
 @end

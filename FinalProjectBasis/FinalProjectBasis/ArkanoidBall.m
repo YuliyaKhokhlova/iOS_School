@@ -35,10 +35,10 @@ static NSString * const BallImageFile = @"ball.gif";
     return [self initWithFrame:frame velocity:CGPointMake(DefaultBallVelocityX, DefaultBallVelocityY) center:CGPointMake(DefaultBallPositionX, DefaultBallPositionY)];
 }
 
-- (void)dealloc 
-{
-    [super dealloc];
-}
+//- (void)dealloc 
+//{
+//    [super dealloc];
+//}
 
 /*
 // Only override drawRect: if you perform custom drawing.

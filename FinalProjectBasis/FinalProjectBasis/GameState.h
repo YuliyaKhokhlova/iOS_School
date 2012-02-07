@@ -25,11 +25,9 @@ static NSUInteger const DefaultStartLives = 3;
     NSUInteger _lives;
     
     ArkanoidBoard * _board;
-    NSMutableArray * _ball;
+    ArkanoidBall * _ball;
     NSMutableArray * _brick;
     NSMutableArray * _bonus;
-    
-    NSMutableDictionary * brickImages;
 }
 @property Boolean isNewGame;
 @property Boolean isPause;
@@ -38,7 +36,7 @@ static NSUInteger const DefaultStartLives = 3;
 @property NSUInteger lives;
 
 @property (retain, nonatomic) ArkanoidBoard * board;
-@property (retain, nonatomic) NSMutableArray * ball;
+@property (retain, nonatomic) ArkanoidBall * ball;
 @property (retain, nonatomic) NSMutableArray * brick;
 @property (retain, nonatomic) NSMutableArray * bonus;
 
@@ -46,11 +44,8 @@ static NSUInteger const DefaultStartLives = 3;
 + (void)releaseInstance;
 
 - (id)initNewGameFromLevel:(NSUInteger)startLevel;
-- (void)loadBricksForLevel:(NSUInteger)level;
++ (void)loadBricks;
 + (void)releaseInstance;
 + (void)resetGame;
-+ (void)gameOver;
-+ (void)liveLost;
-+ (void)killBricks:(NSArray *)bricks;
 
 @end

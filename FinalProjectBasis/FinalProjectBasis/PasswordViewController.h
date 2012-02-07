@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+static NSString * const MoveToLevelNotificationName = @"move to level";
+
 @interface PasswordViewController : UIViewController
+
+@property (retain, nonatomic) IBOutlet UITextField *textField;
+
+- (IBAction)moveToLevel:(id)sender;
 
 @end

@@ -36,10 +36,8 @@ static GameState * _instance = nil;
         self.lives = DefaultStartLives;
         
         self.board = nil;
-        self.ball  = [[NSMutableArray array] retain];
-        self.brick = [[NSMutableArray array] retain];
-        
-        brickImages = [[NSMutableDictionary dictionary] retain];
+        self.ball  = [NSMutableArray array];
+        self.brick = [NSMutableArray array];
     }
     return self;
 }
@@ -54,35 +52,97 @@ static GameState * _instance = nil;
     [_board release], _board = nil;
     [_ball release], _ball = nil;
     [_brick release], _brick = nil;
-    [brickImages release], brickImages = nil;
     [super dealloc];
 }
 
-- (void)loadBricksForLevel:(NSUInteger)level
++ (void)loadBricks
 {
-    NSString * levelFile = @"level.lvl";
+    [_instance.brick removeAllObjects];
     
-    NSArray * data = [NSArray arrayWithContentsOfFile:levelFile];
+    float stx = 100;
+    float sty = 180;
     
-    for (int i = 0; i < data.count; i = i + 5) 
-    {
-        
-    }
-    
-    NSString * imageFile = @"brick_pink_purple.png";
-    
-    UIImage * image = [brickImages objectForKey:imageFile];
-    if (nil == image)
-    {
-        image = [UIImage imageNamed:imageFile];
-        [brickImages setObject:image forKey:imageFile];
-    }
-    CGRect rect  = CGRectMake(13, 30, 49, 25);
-    NSArray * array = [NSArray arrayWithObjects:image, nil ];
-    ArkanoidBrick * brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 images:array bonus:nil];
-    
-    [self.brick addObject:brick];
+    CGRect rect = CGRectMake(stx, sty, DefaultBrickWidth, DefaultBrickHeight);
+    UIImage * image = [UIImage imageNamed:@"brick_cyan_blue.png"];
+    ArkanoidBonus * bonus = [[ArkanoidBonus alloc] initWithFrame:rect bonusType:ArkanoidBonusFastBall];
+    ArkanoidBrick * brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:bonus];
+    [bonus release], bonus = nil;
+    [[GameState instance].brick addObject:brick];
     [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + DefaultBrickWidth, sty, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_cyan_blue.png"];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:nil];
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+
+    rect = CGRectMake(stx + 2 * DefaultBrickWidth, sty - DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_lightgreen_green.png"];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:nil];
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + 3 * DefaultBrickWidth, sty - DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_lightgreen_green.png"];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:nil];
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + 4 * DefaultBrickWidth, sty - 2 * DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_pink_purple.png"];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:nil];
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + 5 * DefaultBrickWidth, sty - 2 * DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_pink_purple.png"];
+    bonus = [[ArkanoidBonus alloc] initWithFrame:rect bonusType:ArkanoidBonusWideBoard];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:bonus];
+    [bonus release], bonus = nil;
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    //
+    rect = CGRectMake(stx, sty - DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_cyan_blue.png"];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:nil];
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + DefaultBrickWidth, sty - DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_cyan_blue.png"];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:nil];
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + 2 * DefaultBrickWidth, sty - 2 * DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_lightgreen_green.png"];
+    bonus = [[ArkanoidBonus alloc] initWithFrame:rect bonusType:ArkanoidBonusAdditionalLive];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:bonus];
+    [bonus release], bonus = nil;
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + 3 * DefaultBrickWidth, sty - 2 * DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_lightgreen_green.png"];
+    bonus = [[ArkanoidBonus alloc] initWithFrame:rect bonusType:ArkanoidBonusSlowBall];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:bonus];
+    [bonus release], bonus = nil;
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + 4 * DefaultBrickWidth, sty - 3 * DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_pink_purple.png"];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:nil];
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
+    rect = CGRectMake(stx + 5 * DefaultBrickWidth, sty - 3 * DefaultBrickHeight, DefaultBrickWidth, DefaultBrickHeight);
+    image = [UIImage imageNamed:@"brick_pink_purple.png"];
+    brick = [[ArkanoidBrick alloc] initWithFrame:rect lives:1 image:image bonus:nil];
+    [[GameState instance].brick addObject:brick];
+    [brick release], brick = nil;
+    
     
 }
 
@@ -107,39 +167,5 @@ static GameState * _instance = nil;
 {
     
 }
-
-+ (void)gameOver
-{
-    _instance.isPause = YES;
-    
-    NSString * msg = [NSString stringWithFormat:@"Your score %d", _instance.scores];
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Game Over" 
-                                                    message:msg 
-                                                   delegate:nil 
-                                          cancelButtonTitle:@"Ok" 
-                                          otherButtonTitles: nil];
-    [alert show];
-    [alert release];
-}
-
-+ (void)liveLost
-{
-    _instance.lives--;
-    
-    if (_instance.lives == 0)
-    {
-        [self gameOver];
-    }
-}
-
-+ (void)killBricks:(NSArray *)bricks
-{
-    for (ArkanoidBrick * brick in bricks) 
-    {
-        [_instance.brick removeObject:brick];
-    }
-}
-
-
 
 @end
